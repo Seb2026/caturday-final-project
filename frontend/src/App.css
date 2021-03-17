@@ -1,0 +1,16 @@
+.App {
+  text-align: center;
+}
+
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+
+input, button{
+  padding: 1rem;
+  font-size: 1.5rem;
+}
