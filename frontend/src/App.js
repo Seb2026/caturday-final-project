@@ -25,11 +25,8 @@ class App extends Component {
 
   render() {
     return (
-      <main className="App">
-        <h1>Caturday</h1>
-        <h2>
-          {this.state.user?.email} <img src={this.state.user?.imageUrl} />
-        </h2>
+      // <main className="App">
+      <div>
         <nav>
           <Link to="/">Home</Link>
           <Link to="/cats">Cats</Link>
@@ -40,6 +37,14 @@ class App extends Component {
             <Link to="/auth"> Log In</Link>
           )}
         </nav>
+        <h1>
+          Every Day is
+          <br />
+          Caturday
+        </h1>
+        {/* <h2>
+          {this.state.user?.email} <img src={this.state.user?.imageUrl} />
+        </h2> */}
 
         <Switch>
           <Route exact path="/" render={(props) => <Home {...props} />} />
@@ -70,7 +75,7 @@ class App extends Component {
             )}
           />
         </Switch>
-      </main>
+      </div>
     );
   }
 }
