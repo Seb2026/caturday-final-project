@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 class Cat extends Component {
   state = {
     cats: [],
+    filteredCats: [],
   };
 
   componentDidMount() {
@@ -14,6 +15,7 @@ class Cat extends Component {
         // console.log(response.data);
         this.setState({
           cats: response.data,
+          filteredCats: response.data,
         });
       })
       .catch((error) => console.log(error));
@@ -25,15 +27,22 @@ class Cat extends Component {
   };
 
   search = (e) => {
-    let copyCats = [...this.state.cats]
-    let filteredCats = copyCats.filter((elem) => {
-      return elem.name.toLowerCase().includes(e.target.value.toLowerCase());
+    let searchCats = this.state.cats.filter((elem) => {
+      // if(elem.)
+      // return elem.name.toLowerCase().includes(e.target.value.toLowerCase());
+      if (
+        elem.name.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        elem.description.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        elem.temperament.toLowerCase().includes(e.target.value.toLowerCase())
+      ) {
+        return elem;
+      }
     });
-    this.setState({ cats: filteredCats });
+    this.setState({ filteredCats: searchCats });
   };
 
   allCats = () => {
-    return this.state.cats.map((eachCat) => {
+    return this.state.filteredCats.map((eachCat) => {
       console.log(eachCat.image);
       return (
         <div key={eachCat._id}>
@@ -52,18 +61,17 @@ class Cat extends Component {
   render() {
     return (
       <>
-      <input
+        <input
           onChange={this.search}
           name="search"
-          placeholder="search"
+          placeholder="Keyword Search"
           type="text"
         />
-        
 
-      <div className="cat-grid">
-        {/* <HomeButton /> */}
-        {this.allCats()}
-      </div>
+        <div className="cat-grid">
+          {/* <HomeButton /> */}
+          {this.allCats()}
+        </div>
       </>
     );
   }
