@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router()
 const jwt = require('jsonwebtoken')
 
-const Post = require('../models/Post')
+const Comment = require('../models/Comment')
 const User = require('../models/User')
 
 
@@ -14,25 +14,25 @@ router.get(`/`, (req, res) => {
 })
 
 
-router.post(`/addAPost`, authorize, (req, res) => {
+router.post(`/addComment`, authorize, (req, res) => {
 
-    Post.create({ message: req.body.message, userId: res.locals.user._id })
-        .then(post => {
-            res.json({ post })
+    Comment.create({ comment: req.body.comment, userId: res.locals.user._id })
+        .then(comment => {
+            res.json({ comment })
         }).catch(console.error)
 
 })
 
 
-router.get('/getPosts', (req, res) => {
-    Post.find({}).then(allPostsFromDb => {
-        res.json(allPostsFromDb)
+router.get('/getComments', (req, res) => {
+    Comment.find({}).then(allCommentsFromDb => {
+        res.json(allCommentsFromDb)
     })
 })
 
-router.get('/getMyPosts', authorize, (req, res) => {
-    Post.find({ userId: res.locals.user._id }).then(allPostsFromDb => {
-        res.json(allPostsFromDb)
+router.get('/getMyComments', authorize, (req, res) => {
+    Comment.find({ userId: res.locals.user._id }).then(allCommentsFromDb => {
+        res.json(allCommentsFromDb)
     })
 })
 
