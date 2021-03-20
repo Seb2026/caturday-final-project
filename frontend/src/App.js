@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Home from "./components/Home";
 import AddComment from "./components/AddComment";
+import CatList from "./components/CatList";
 import Auth from "./components/Auth";
 import Profile from "./components/Profile";
 import { Switch, Route, Link } from "react-router-dom";
@@ -31,6 +32,7 @@ class App extends Component {
         </h2>
         <nav>
           <Link to="/">Home</Link>
+          <Link to="/cats">Cats</Link>
           <Link to="/add-comment">Add Comment</Link>
           {this.state.user.email ? (
             <Link to="/profile">Profile</Link>
@@ -45,6 +47,11 @@ class App extends Component {
             exact
             path="/add-comment"
             render={(props) => <AddComment {...props} />}
+          />
+          <Route
+            exact
+            path="/cats"
+            render={(props) => <CatList {...props} />}
           />
           <Route
             exact

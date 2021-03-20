@@ -13,9 +13,9 @@ class Home extends Component {
     // let res = await actions.getComments();
     // this.setState({ comments: res.data });
     let cats = await axios.get(
-      `https://api.thecatapi.com/v1/breeds?key=${process.env.x - api - key}`
+      `https://api.thecatapi.com/v1/breeds?key=${process.env.xapikey}`
     );
-    console.log(cats);
+    // console.log(cats);
   }
 
   showComment = () => {
