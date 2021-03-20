@@ -19,6 +19,19 @@ class Cat extends Component {
       .catch((error) => console.log(error));
   }
 
+  handleChange = (e) => {
+    console.log(e.target.value, e.target.name);
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  search = (e) => {
+    let copyCats = [...this.state.cats]
+    let filteredCats = copyCats.filter((elem) => {
+      return elem.name.toLowerCase().includes(e.target.value.toLowerCase());
+    });
+    this.setState({ cats: filteredCats });
+  };
+
   allCats = () => {
     return this.state.cats.map((eachCat) => {
       console.log(eachCat.image);
@@ -38,10 +51,20 @@ class Cat extends Component {
 
   render() {
     return (
+      <>
+      <input
+          onChange={this.search}
+          name="search"
+          placeholder="search"
+          type="text"
+        />
+        
+
       <div className="cat-grid">
         {/* <HomeButton /> */}
         {this.allCats()}
       </div>
+      </>
     );
   }
 }
