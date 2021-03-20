@@ -21,4 +21,4 @@ const catSchema = new Schema({
   image_url: String,
 });
 
-module.exports = model("Cats", catSchema);
+module.exports = model("Cat", catSchema);

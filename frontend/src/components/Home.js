@@ -1,34 +1,33 @@
-import React, { Component } from 'react';
-import axios from 'axios'
-import actions from '../api'
+import React, { Component } from "react";
+import axios from "axios";
+import actions from "../api";
 
 class Home extends Component {
+  state = {
+    comments: [],
+  };
 
-    state = {
-        posts: []
-    }
+  async componentDidMount() {
+    // let res = await axios.get(`http://localhost:5000/api/getPosts`)
+    // console.log(res)
+    let res = await actions.getComments();
+    this.setState({ comments: res.data });
+  }
 
-    async componentDidMount() {
-        // let res = await axios.get(`http://localhost:5000/api/getPosts`)
-        // console.log(res)
-        let res = await actions.getPosts()
-        this.setState({ posts: res.data })
-    }
+  showComment = () => {
+    return this.state.comments.map((eachComment) => {
+      return <li key={eachComment._id}> {eachComment.comment} </li>;
+    });
+  };
 
-    showPosts = () => {
-        return this.state.posts.map(eachPost => {
-            return <li key={eachPost._id}> {eachPost.message} </li>
-        })
-    }
-
-    render() {
-        return (
-            <div>
-                Home
-                {this.showPosts()}
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div>
+        Home
+        {this.showComment()}
+      </div>
+    );
+  }
 }
 
 export default Home;

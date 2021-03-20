@@ -1,8 +1,8 @@
 const { Schema, model, ObjectId } = require('mongoose')
 
-const postSchema = new Schema({
-    message: String,
+const commentSchema = new Schema({
+    comment: String,
     userId: { type: Schema.Types.ObjectId, ref: 'User' }
 })
 
-module.exports = model('Post', postSchema)
+module.exports = model('Comment', commentSchema)
