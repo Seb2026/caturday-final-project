@@ -10,8 +10,12 @@ class Home extends Component {
   async componentDidMount() {
     // let res = await axios.get(`http://localhost:5000/api/getPosts`)
     // console.log(res)
-    let res = await actions.getComments();
-    this.setState({ comments: res.data });
+    // let res = await actions.getComments();
+    // this.setState({ comments: res.data });
+    let cats = await axios.get(
+      `https://api.thecatapi.com/v1/breeds?key=${process.env.x - api - key}`
+    );
+    console.log(cats);
   }
 
   showComment = () => {
