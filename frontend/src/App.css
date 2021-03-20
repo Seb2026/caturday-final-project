@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+body {
+  text-align: center;
+  padding: 1rem 3rem;
+}
+
 nav {
   display: flex;
   justify-content: space-evenly;
@@ -70,4 +75,8 @@ h1 {
   color: white;
   padding: 10px;
   width: 100%;
+}
+
+.cat-img {
+  width: 50vh;
 }
