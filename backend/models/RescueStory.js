@@ -1,6 +1,7 @@
 const { Schema, model, ObjectId } = require("mongoose");
 
 const rescueStorySchema = new Schema({
+  name: String,
   breed: String,
   age: Number,
   story: String,
