@@ -19,7 +19,7 @@ class Profile extends Component {
 
   showMyComments = () => {
     return this.state.comments.map((eachComment) => {
-      return <li key={eachComment._id}> {eachComment.message} </li>;
+      return <li key={eachComment._id}> {eachComment.comments} </li>;
     });
   };
 

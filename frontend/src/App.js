@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import AddComment from "./components/AddComment";
 import CatList from "./components/CatList";
 import CatDetail from "./components/CatDetail";
+import RescueStories from "./components/RescueStories";
 import Auth from "./components/Auth";
 import Profile from "./components/Profile";
 import { Switch, Route, Link } from "react-router-dom";
@@ -31,7 +32,7 @@ class App extends Component {
         <nav>
           <Link to="/">Home</Link>
           <Link to="/cat-list">Cats</Link>
-          <Link to="/add-comment">Add Comment</Link>
+          <Link to="/rescueStories">RescueStories</Link>
           {this.state.user.email ? (
             <Link to="/profile">Profile</Link>
           ) : (
@@ -70,6 +71,12 @@ class App extends Component {
             path="/auth"
             render={(props) => <Auth setUser={this.setUser} {...props} />}
           />
+          <Route
+            exact
+            path="/rescueStories"
+            render={(props) => <RescueStories {...props} />}
+          />
+
           <Route
             exact
             path="/profile"
