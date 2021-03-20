@@ -4,8 +4,17 @@
 
 nav {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   padding: 20px;
+  box-shadow: 2px 2px 6px 0px rgba(59, 34, 1, 0.3);
+}
+
+nav a {
+  padding: 20px;
+}
+
+nav a::after {
+  color: darkgray;
 }
 
 input,
@@ -21,6 +30,21 @@ button {
   flex-wrap: wrap;
 } */
 
+h1 {
+  font-family: "Acme", sans-serif;
+  font-size: 6rem;
+  color: rgb(59, 34, 1);
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1rem;
+}
+
 .cats {
   display: flex;
   flex-wrap: wrap;
@@ -29,8 +53,10 @@ button {
 .cat {
   flex: 0 0 200px;
   margin: 10px;
+  padding-top: 2rem;
   border: 1px solid #ccc;
   box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+  text-align: center;
 }
 .cat img {
   max-width: 100%;

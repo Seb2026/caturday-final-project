@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Cat extends Component {
   state = {
@@ -22,16 +23,13 @@ class Cat extends Component {
     return this.state.cats.map((eachCat) => {
       console.log(eachCat.image);
       return (
-        <div key={eachCat._id} className="cats">
+        <div key={eachCat._id}>
           <div className="cat">
-            <img
-              src={eachCat.image?.url}
-              alt=" image unavailable"
-              width="200vw"
-            />
+            <img src={eachCat.image?.url} alt=" unavailable" width="200vw" />
             <br />
-            {/* <Link to={`/beers/${eachBeer._id}`}><h2>{eachBeer.name}</h2></Link> */}
-            {eachCat.name}
+            <Link to={`/cats/${eachCat._id}`}>
+              <h3>{eachCat.name}</h3>
+            </Link>
           </div>
         </div>
       );
@@ -40,7 +38,7 @@ class Cat extends Component {
 
   render() {
     return (
-      <div>
+      <div className="cat-grid">
         {/* <HomeButton /> */}
         {this.allCats()}
       </div>
