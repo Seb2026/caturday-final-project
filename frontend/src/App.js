@@ -3,6 +3,7 @@ import "./App.css";
 import Home from "./components/Home";
 import AddComment from "./components/AddComment";
 import CatList from "./components/CatList";
+import CatDetail from "./components/CatDetail";
 import Auth from "./components/Auth";
 import Profile from "./components/Profile";
 import { Switch, Route, Link } from "react-router-dom";
@@ -29,7 +30,7 @@ class App extends Component {
       <div>
         <nav>
           <Link to="/">Home</Link>
-          <Link to="/cats">Cats</Link>
+          <Link to="/cat-list">Cats</Link>
           <Link to="/add-comment">Add Comment</Link>
           {this.state.user.email ? (
             <Link to="/profile">Profile</Link>
@@ -55,8 +56,14 @@ class App extends Component {
           />
           <Route
             exact
-            path="/cats"
+            path="/cat-list"
             render={(props) => <CatList {...props} />}
+          />
+
+          <Route
+            exact
+            path="/cat-detail/:id"
+            render={(props) => <CatDetail {...props} />}
           />
           <Route
             exact

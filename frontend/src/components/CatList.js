@@ -49,7 +49,7 @@ class Cat extends Component {
           <div className="cat">
             <img src={eachCat.image?.url} alt=" unavailable" width="200vw" />
             <br />
-            <Link to={`/cats/${eachCat._id}`}>
+            <Link to={`/cat-detail/${eachCat.id}`}>
               <h3>{eachCat.name}</h3>
             </Link>
           </div>
