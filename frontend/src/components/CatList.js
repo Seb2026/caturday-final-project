@@ -6,6 +6,7 @@ class Cat extends Component {
   state = {
     cats: [],
     filteredCats: [],
+    image: "",
   };
 
   componentDidMount() {
@@ -17,8 +18,18 @@ class Cat extends Component {
           cats: response.data,
           filteredCats: response.data,
         });
-      })
-      .catch((error) => console.log(error));
+        axios
+          .get(
+            `https://api.thecatapi.com/v1/images/search?breed_id=${this.props.match.params.id}`
+          )
+          .then((response) => {
+            console.log("-=-=-=-=-=-=-=-=-", response.data[0].url);
+            this.setState({
+              image: response.data[0].url,
+            });
+          })
+          .catch((error) => console.log(error));
+      });
   }
 
   handleChange = (e) => {
