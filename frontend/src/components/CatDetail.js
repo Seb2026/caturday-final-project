@@ -37,6 +37,8 @@ class CatDetail extends Component {
         <img className="cat-img" src={this.state.image} alt="unavailable" />
         <p>{this.state.catDetails.name}</p>
         <p>{this.state.catDetails.description}</p>
+
+        
       </div>
     );
   }
