@@ -2,6 +2,8 @@
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
+const bcryptjs = require("bcryptjs");
+const saltRounds = 10;
 
 const Comment = require("../models/Comment");
 const User = require("../models/User");
@@ -41,13 +43,28 @@ router.get("/user", authorize, (req, res) => {
     .catch(console.error);
 });
 
-router.post("/logMeIn", async (req, res) => {
+router.post("/logmein", async (req, res) => {
   //Check if user already exists
   let user = await User.findOne({ email: req.body.email });
 
-  //If s/he doesn't exist than create new user
+  const { email, password } = req.body;
   if (!user) {
-    user = await User.create(req.body);
+    let salt = await bcryptjs.genSalt(saltRounds);
+    let hashedPass = await bcryptjs.hash(password, salt);
+    User.create({ email, password: hashedPass });
+    // bcryptjs
+    //   .genSalt(saltRounds)
+    //   .then((salt) => bcrytpjs.hash(password, salt))
+    //   .then((hashedPass) => {
+    //     if (!user) {
+    //       User.create({
+    //         email: req.body.email,
+    //         password: hashedPass,
+    //       })
+    //         .then((createdUser) => res.json(createdUser))
+    //         .catch((err) => console.log(err));
+    //     }
+    //   });
   }
 
   //Signing the token with the user object
