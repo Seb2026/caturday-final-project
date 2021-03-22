@@ -1,17 +1,31 @@
 require("dotenv").config();
+
+const cookieParser = require("cookie-parser");
+const favicon = require("serve-favicon");
 const express = require("express");
+const logger = require("morgan");
 const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
 
-mongoose
-  .connect(process.env.MONGODB_URI || "mongodb://localhost/Caturday", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then((x) => console.log(`Connected to ${x.connections[0].name}`))
-  .catch(() => console.error("Error connecting to Mongo"));
+// mongoose
+//   .connect(process.env.MONGODB_URI || "mongodb://localhost/Caturday", {
+//     useCreateIndex: true,
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   })
+//   .then((x) => console.log(`Connected to ${x.connections[0].name}`))
+//   .catch(() => console.error("Error connecting to Mongo"));
+
+// require database configuration
+require("./configs/db.config");
+app.use(cookieParser());
+require("./configs/session.config")(app);
+
+//global variable for userInSession
+const bindUserToLocals = require("./configs/user-locals.config");
+app.use(bindUserToLocals);
 
 app.use(
   cors({
