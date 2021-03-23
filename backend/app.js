@@ -4,6 +4,10 @@ const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
+const cookieParser = require("cookie-parser");
+
+const session = require("express-session");
+const passport = require("passport");
 
 mongoose
   .connect(process.env.MONGODB_URI || "mongodb://localhost/Caturday", {
@@ -22,12 +26,29 @@ app.use(
 
 //This is for req.body
 app.use(express.json());
+app.use(cookieParser());
 
 //Static files for our backend
 app.use(express.static(path.join(__dirname, "../frontend/build")));
 
+//session settings
+app.use(
+  session({
+    secret: "some secret goes here",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+
+require("./configs/passport");
+
+//passport initalize
+app.use(passport.initialize());
+app.use(passport.session());
+
 //Our connection to the frontend >>> All our routes for now
 app.use(`/api`, require("./routes/routes"));
+app.use("/api", require("./routes/auth-routes"));
 
 //Sends our one single page on all requests
 app.get("*", (req, res, next) => {

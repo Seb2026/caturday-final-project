@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { Component } from "react";
 import actions from "../api";
-class Auth extends Component {
+class SignUp extends Component {
   state = {
     email: "",
     password: "",
@@ -10,7 +10,7 @@ class Auth extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/api/logmein", this.state)
+      .post("http://localhost:5000/api/signup", this.state)
       .then((response) => {
         console.log(response);
       })
@@ -39,10 +39,10 @@ class Auth extends Component {
           name="password"
           placeholder="******"
         />
-        <button>Login</button>
+        <button>Signup</button>
       </form>
     );
   }
 }
 
-export default Auth;
+export default SignUp;

@@ -1,10 +1,10 @@
 const { Schema, model } = require("mongoose");
 
 const userSchema = new Schema({
-  email: String,
-  googleId: String,
+  username: String,
+  // googleId: String,
   password: String,
-  imageUrl: String,
+  // imageUrl: String,
   // roles: { type: String, enum: ['ADMIN', 'USER'], default: 'USER' }
 });
 
