@@ -76,11 +76,11 @@ router.post("/logmein", async (req, res) => {
 
 router.post("/rescue-story", (req, res) => {
   const { name, age, breed, story, image } = req.body;
-  RescueStory.create({ name, age, breed, story, image })
+  RescueStory.create({ name, age, breed, story, image, userId: req.user._id })
     .then((createdStory) => {
-      console.log(createdStory);
+      res.json(createdStory);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => res.json(err));
 });
 
 //   <input type="text" name="name" placeholder="Cat's Name" />

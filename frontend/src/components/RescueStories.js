@@ -11,7 +11,9 @@ class RescueStories extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:5000/api/rescue-story", this.state);
+    axios.post("http://localhost:5000/api/rescue-story", this.state, {
+      withCredentials: true,
+    });
     this.props.history.push("/");
   };
 
